@@ -1,17 +1,23 @@
 \documentclass[12pt]{beamer}
 
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
 \usetheme{Copenhagen}
 \setbeamertemplate{navigation symbols}{}
 
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\renewcommand{\algorithmiccomment}[1]{/\(\!\)/ #1}
+
 \title{Traversing the \(k\)-mer Landscape of NGS Read Datasets for Quality Score Sparsification}
 \author[Jacopo Notarstefano]{
     Jacopo Notarstefano\\
     \texttt{jacopo.notarstefano [at] gmail.com}
 }
-\date{}
+\date{May 19, 2014}
 
 \begin{document}
     \begin{frame}[plain]
@@ -19,5 +25,64 @@
     \end{frame}
 
     \begin{frame}{}
+    \end{frame}
+
+    \begin{frame}{The \textsc{Dict} algorithm}
+        \begin{algorithm}[H]
+	    \caption{\textsc{Dict}}
+	    \begin{algorithmic}[]
+                \REQUIRE \(C, k, r\)
+		\ENSURE \(D\)
+		\STATE \(D \leftarrow \{\}\)
+		\STATE \(A \leftarrow [0,\dots,0] \in \mathbb{N}^{4^k}\)
+		\FOR{\(\text{x}\in C_k\)}
+		    \STATE \(\text{A}[\text{x}]++\)
+		\ENDFOR
+		\FOR{\(\text{x}\in [4^k]\)}
+		    \IF{\(\text{A}[\text{x}]\ge\text{r}\)}
+		        \STATE \(\text{D}.\text{append}(\text{x})\)
+		    \ENDIF
+		\ENDFOR
+		\RETURN \(D\)
+	    \end{algorithmic}
+	\end{algorithm}
+    \end{frame}
+
+    \begin{frame}{The \textsc{MarkKmer} algorithm}
+        \begin{algorithm}[H]
+	    \caption{\textsc{MarkKmer}}
+	    \begin{algorithmic}[]
+	        \REQUIRE \(x, D\)
+		\ENSURE \(M\)
+	    \end{algorithmic}
+	\end{algorithm}
+    \end{frame}
+
+    \begin{frame}{The \textsc{MarkRead} algorithm}
+        \begin{algorithm}[H]
+	    \caption{\textsc{MarkRead}}
+	    \begin{algorithmic}[]
+		\REQUIRE \(\gamma, D\)
+		\ENSURE \(\mathcal{M}\)
+	    \end{algorithmic}
+	\end{algorithm}
+    \end{frame}
+
+    \begin{frame}{The \textsc{SparsifyRQ} algorithm}
+        \begin{algorithm}[H]
+	    \caption{\textsc{SparsifyRQ}}
+	    \begin{algorithmic}[1]
+		\REQUIRE \(\gamma,Q,D,Q_{\text{threshold}}\)
+		\ENSURE \(Q'\)
+                \STATE \(Q' \leftarrow Q\)
+		\STATE \(\mathcal{M} \leftarrow \text{\textsc{MarkRead}}(\gamma, D)\)
+		\FOR{\(\text{i}\in [\text{length}(\gamma)]\)}
+		    \IF{\((Q_i > Q_{\text{threshold}}) \lor (\mathcal{M}_i = \text{\text{true}})\)}
+		        \STATE \(Q'_i \leftarrow Q_{\text{threshold}}\)
+		    \ENDIF
+		\ENDFOR
+		\RETURN \(Q'\)
+	    \end{algorithmic}
+	\end{algorithm}
     \end{frame}
 \end{document}
