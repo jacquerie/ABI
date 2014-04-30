@@ -97,16 +97,16 @@
         \begin{algorithm}[H]
 	    \caption{\textsc{SparsifyRQ}}
 	    \begin{algorithmic}[1]
-		\REQUIRE \(\gamma,Q,D,Q_{\text{threshold}}\)
-		\ENSURE \(Q'\)
-                \STATE \(Q' \leftarrow Q\)
-		\STATE \(\mathcal{M} \leftarrow \text{\textsc{MarkRead}}(\gamma, D)\)
+                \REQUIRE \(\gamma,\text{Q},\text{D},\text{Q}_{\text{threshold}}\)
+		\ENSURE \(\text{Q}'\)
+		\STATE \(\text{Q}' \leftarrow \text{Q}\)
+		\STATE \(\mathcal{M} \leftarrow \text{\textsc{MarkRead}}(\gamma, \text{D})\)
 		\FOR{\(\text{i}\in [\text{length}(\gamma)]\)}
-		    \IF{\((Q_i > Q_{\text{threshold}}) \lor (\mathcal{M}_i = \text{\text{true}})\)}
-		        \STATE \(Q'_i \leftarrow Q_{\text{threshold}}\)
+		    \IF{\((\text{Q}_\text{i} > \text{Q}_{\text{threshold}}) \text{ \textbf{or} } (\mathcal{M}_\text{i} = \text{\text{true}})\)}
+		        \STATE \(\text{Q}'_\text{i} \leftarrow \text{Q}_{\text{threshold}}\)
 		    \ENDIF
 		\ENDFOR
-		\RETURN \(Q'\)
+		\RETURN \(\text{Q}'\)
 	    \end{algorithmic}
 	\end{algorithm}
     \end{frame}
