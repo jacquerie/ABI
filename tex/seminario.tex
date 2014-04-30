@@ -30,7 +30,7 @@
     \begin{frame}{The \textsc{Dict} algorithm}
         \begin{algorithm}[H]
 	    \caption{\textsc{Dict}}
-	    \begin{algorithmic}[]
+	    \begin{algorithmic}[1]
                 \REQUIRE \(C, k, r\)
 		\ENSURE \(D\)
 		\STATE \(D \leftarrow \{\}\)
@@ -51,9 +51,22 @@
     \begin{frame}{The \textsc{MarkKmer} algorithm}
         \begin{algorithm}[H]
 	    \caption{\textsc{MarkKmer}}
-	    \begin{algorithmic}[]
-	        \REQUIRE \(x, D\)
-		\ENSURE \(M\)
+	    \begin{algorithmic}[1]
+		\REQUIRE \(\text{x}, \text{D}\)
+		\ENSURE \(\text{M}\)
+		\IF{\(\Delta(\text{x}, \text{D}) > 1\)}
+		    \STATE \(\text{M} \leftarrow [\text{false},\dots,\text{false}]\in\{\text{true},\text{false}\}^\text{k}\)
+		\ELSE
+		    \STATE \(\text{M} \leftarrow [\text{true},\dots,\text{true}]\in\{\text{true},\text{false}\}^\text{k}\)
+	            \FOR{\(\text{y}\in\text{D}\mid\Delta(\text{x},\text{y}) = 1\)}
+		        \FOR{\(\text{i}\in[\text{k}]\)}
+			    \IF{\(\text{x}_\text{i}\neq\text{y}_\text{i}\)}
+			        \STATE \(\text{M}_\text{i}\leftarrow\text{false}\)
+			    \ENDIF
+			\ENDFOR
+		    \ENDFOR
+		\ENDIF
+		\RETURN \(\text{M}\)
 	    \end{algorithmic}
 	\end{algorithm}
     \end{frame}
@@ -61,7 +74,7 @@
     \begin{frame}{The \textsc{MarkRead} algorithm}
         \begin{algorithm}[H]
 	    \caption{\textsc{MarkRead}}
-	    \begin{algorithmic}[]
+	    \begin{algorithmic}[1]
 		\REQUIRE \(\gamma, D\)
 		\ENSURE \(\mathcal{M}\)
 	    \end{algorithmic}
