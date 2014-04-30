@@ -8,6 +8,7 @@
 \usetheme{Copenhagen}
 \setbeamertemplate{navigation symbols}{}
 
+\newcommand{\pp}{\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\raisebox{.4ex}{\tiny\bf +}}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 \renewcommand{\algorithmiccomment}[1]{/\(\!\)/ #1}
@@ -31,19 +32,19 @@
         \begin{algorithm}[H]
 	    \caption{\textsc{Dict}}
 	    \begin{algorithmic}[1]
-                \REQUIRE \(C, k, r\)
-		\ENSURE \(D\)
-		\STATE \(D \leftarrow \{\}\)
-		\STATE \(A \leftarrow [0,\dots,0] \in \mathbb{N}^{4^k}\)
-		\FOR{\(\text{x}\in C_k\)}
-		    \STATE \(\text{A}[\text{x}]++\)
+                \REQUIRE \(\text{C}, \text{k}, \text{r}\)
+		\ENSURE \(\text{D}\)
+		\STATE \(\text{D} \leftarrow \{\}\)
+		\STATE \(\text{A} \leftarrow [0,\dots,0] \in \mathbb{N}^{4^\text{k}}\)
+		\FOR{\(\text{x}\in \text{C}_\text{k}\)}
+		    \STATE \(\text{A}[\text{x}]\pp\)
 		\ENDFOR
-		\FOR{\(\text{x}\in [4^k]\)}
+		\FOR{\(\text{x}\in [4^\text{k}]\)}
 		    \IF{\(\text{A}[\text{x}]\ge\text{r}\)}
 		        \STATE \(\text{D}.\text{append}(\text{x})\)
 		    \ENDIF
 		\ENDFOR
-		\RETURN \(D\)
+		\RETURN \(\text{D}\)
 	    \end{algorithmic}
 	\end{algorithm}
     \end{frame}
