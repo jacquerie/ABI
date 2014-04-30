@@ -75,8 +75,19 @@
         \begin{algorithm}[H]
 	    \caption{\textsc{MarkRead}}
 	    \begin{algorithmic}[1]
-		\REQUIRE \(\gamma, D\)
-		\ENSURE \(\mathcal{M}\)
+                \REQUIRE \(\gamma, \text{D}\)
+                \ENSURE \(\mathcal{M}\)
+		\STATE \, \COMMENT Let \(\text{x}^\text{a}\) be the \(\text{k}\)-mer in \(\gamma\) starting at \(\text{a}\).
+                \STATE \, \COMMENT Cover \(\gamma\) by \(\text{k}\)-mers \(\{\text{x}^{\text{a}_\text{1}},\dots,\text{x}^{\text{a}_\text{n}}\}\).
+		\FOR{\(\text{i}\in[\text{n}]\)}
+		    \STATE \(\text{M}^\text{i} \leftarrow \text{\textsc{MarkKmer}}(\text{x}^{\text{a}_\text{i}},\text{D})\)
+                    \STATE \(\overline{\text{M}}^\text{i} \leftarrow [\text{false},\dots,\text{false}]\in \{\text{true},\text{false}\}^{\text{length}(\gamma)}\)
+		    \FOR{\(\text{j}\in[\text{k}]\)}
+		        \STATE \(\overline{\text{M}}^{\text{i}}_{\text{j}+\text{a}_\text{i}-1} \leftarrow \text{M}^\text{i}_\text{j}\)
+		    \ENDFOR
+                \ENDFOR
+		\STATE \(\mathcal{M} \leftarrow \overline{\text{M}}^1 \lor \dots \lor \overline{\text{M}}^\text{n}\)
+		\RETURN \(\mathcal{M}\)
 	    \end{algorithmic}
 	\end{algorithm}
     \end{frame}
