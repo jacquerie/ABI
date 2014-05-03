@@ -28,6 +28,16 @@
     \begin{frame}{}
     \end{frame}
 
+    \begin{frame}{Phred quality score}
+        \begin{definition}[Phred quality score]
+            Let \(P\) be the probability that a base call is incorrect. Then we
+	    define its \emph{Phred quality score} \(Q\) as
+            \[
+                Q = -10\log_{10}{P}\text{.}
+	    \]
+        \end{definition}
+    \end{frame}
+
     \begin{frame}{The \textsc{Dict} algorithm}
         \begin{algorithm}[H]
 	    \caption{\textsc{Dict}}
