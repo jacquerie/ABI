@@ -29,15 +29,31 @@
         \titlepage
     \end{frame}
 
-    \begin{frame}{}
+    \begin{frame}{Next-generation sequencing (NGS)}
+    \end{frame}
+
+    \begin{frame}{The problem with next-generation sequencing}
+        \begin{quotation}
+            ``In the past two decades, genomic sequencing capabilities have
+	    increased exponentially, outstripping advances in computing power
+	    and storage.''
+        \end{quotation}
+        \vspace{0.5cm}
+        \begin{itemize}
+            \item Moore's law predicts that the number of transistors on
+                integrated circuits doubles every \(24\) months.
+            \item Kryder's law predicts that hard drive density doubles
+                approximately every \(13\) months.
+	    \item Sequencing output has doubled every \(9\) months.
+        \end{itemize}
     \end{frame}
 
     \begin{frame}{Phred quality score}
         \begin{definition}[Phred quality score]
-            Let \(P\) be the probability that a base call is incorrect. Then we
-	    define its \emph{Phred quality score} \(Q\) as
+            Let \(\P_e\) be the estimated probability that a base call is
+	    incorrect. Then we define its \emph{Phred quality score} \(Q\) as
             \[
-                Q = -10\log_{10}{P}\text{.}
+                Q = -10\log_{10}{P_e}\text{.}
 	    \]
         \end{definition}
 	\vspace{0.5cm}
@@ -128,5 +144,8 @@
 		\RETURN \(\text{Q}'\)
 	    \end{algorithmic}
 	\end{algorithm}
+    \end{frame}
+
+    \begin{frame}{Results}
     \end{frame}
 \end{document}
