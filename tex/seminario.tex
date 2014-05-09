@@ -37,8 +37,8 @@
     \begin{frame}{The problem with next-generation sequencing}
         \begin{quotation}
             ``In the past two decades, genomic sequencing capabilities have
-	    increased exponentially, outstripping advances in computing power
-	    and storage.''
+            increased exponentially, outstripping advances in computing power
+            and storage.''
         \end{quotation}
         \vspace{0.5cm}
         \begin{itemize}
@@ -46,7 +46,7 @@
                 integrated circuits doubles every \(24\) months.
             \item Kryder's law predicts that hard drive density doubles
                 approximately every \(13\) months.
-	    \item Sequencing output has doubled every \(9\) months.
+            \item Sequencing output has doubled every \(9\) months.
         \end{itemize}
     \end{frame}
 
@@ -59,16 +59,16 @@
     \begin{frame}{Phred quality score}
         \begin{definition}[Phred quality score]
             Let \(P_e\) be the estimated probability that a base call is
-	    incorrect. Then we define its \emph{Phred quality score} \(Q\) as
+            incorrect. Then we define its \emph{Phred quality score} \(Q\) as
             \[
                 Q = -10\log_{10}{P_e}\text{.}
-	    \]
+            \]
         \end{definition}
-	\vspace{0.5cm}
-	This quantity is encoded in the Sanger FASTQ format as a single byte, where
-	the character \texttt{\textquotesingle!\textquotesingle} represents the
-	lowest quality while \texttt{\textquotesingle\textapprox\textquotesingle}
-	is the highest.
+        \vspace{0.5cm}
+        This quantity is encoded in the Sanger FASTQ format as a single byte,
+        where the character \texttt{\textquotesingle!\textquotesingle}
+        represents the lowest quality while
+        \texttt{\textquotesingle\textapprox\textquotesingle} is the highest.
     \end{frame}
 
     \begin{frame}{The RQS algorithm, in brief}
@@ -76,85 +76,85 @@
 
     \begin{frame}{The \textsc{Dict} algorithm}
         \begin{algorithm}[H]
-	    \caption{\textsc{Dict}}
-	    \begin{algorithmic}[1]
+            \caption{\textsc{Dict}}
+            \begin{algorithmic}[1]
                 \REQUIRE \(\text{C}, \text{k}, \text{r}\)
-		\ENSURE \(\text{D}\)
-		\STATE \(\text{D} \leftarrow \{\}\)
-		\STATE \(\text{A} \leftarrow [0,\dots,0] \in \mathbb{N}^{4^\text{k}}\)
-		\FOR{\(\text{x}\in \text{C}_\text{k}\)}
-		    \STATE \(\text{A}[\text{x}]\pp\)
-		\ENDFOR
-		\FOR{\(\text{x}\in [4^\text{k}]\)}
-		    \IF{\(\text{A}[\text{x}]\ge\text{r}\)}
-		        \STATE \(\text{D}.\text{append}(\text{x})\)
-		    \ENDIF
-		\ENDFOR
-		\RETURN \(\text{D}\)
-	    \end{algorithmic}
-	\end{algorithm}
+                \ENSURE \(\text{D}\)
+                \STATE \(\text{D} \leftarrow \{\}\)
+                \STATE \(\text{A} \leftarrow [0,\dots,0] \in \mathbb{N}^{4^\text{k}}\)
+                \FOR{\(\text{x}\in \text{C}_\text{k}\)}
+                    \STATE \(\text{A}[\text{x}]\pp\)
+                \ENDFOR
+                \FOR{\(\text{x}\in [4^\text{k}]\)}
+                    \IF{\(\text{A}[\text{x}]\ge\text{r}\)}
+                        \STATE \(\text{D}.\text{append}(\text{x})\)
+                    \ENDIF
+                \ENDFOR
+                \RETURN \(\text{D}\)
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
 
     \begin{frame}{The \textsc{MarkKmer} algorithm}
         \begin{algorithm}[H]
-	    \caption{\textsc{MarkKmer}}
-	    \begin{algorithmic}[1]
-		\REQUIRE \(\text{x}, \text{D}\)
-		\ENSURE \(\text{M}\)
-		\IF{\(\Delta(\text{x}, \text{D}) > 1\)}
-		    \STATE \(\text{M} \leftarrow [\text{false},\dots,\text{false}]\in\{\text{true},\text{false}\}^\text{k}\)
-		\ELSE
-		    \STATE \(\text{M} \leftarrow [\text{true},\dots,\text{true}]\in\{\text{true},\text{false}\}^\text{k}\)
-	            \FOR{\(\text{y}\in\text{D}\mid\Delta(\text{x},\text{y}) = 1\)}
-		        \FOR{\(\text{i}\in[\text{k}]\)}
-			    \IF{\(\text{x}_\text{i}\neq\text{y}_\text{i}\)}
-			        \STATE \(\text{M}_\text{i}\leftarrow\text{false}\)
-			    \ENDIF
-			\ENDFOR
-		    \ENDFOR
-		\ENDIF
-		\RETURN \(\text{M}\)
-	    \end{algorithmic}
-	\end{algorithm}
+            \caption{\textsc{MarkKmer}}
+            \begin{algorithmic}[1]
+                \REQUIRE \(\text{x}, \text{D}\)
+                \ENSURE \(\text{M}\)
+                \IF{\(\Delta(\text{x}, \text{D}) > 1\)}
+                    \STATE \(\text{M} \leftarrow [\text{false},\dots,\text{false}]\in\{\text{true},\text{false}\}^\text{k}\)
+                \ELSE
+                    \STATE \(\text{M} \leftarrow [\text{true},\dots,\text{true}]\in\{\text{true},\text{false}\}^\text{k}\)
+                    \FOR{\(\text{y}\in\text{D}\mid\Delta(\text{x},\text{y}) = 1\)}
+                        \FOR{\(\text{i}\in[\text{k}]\)}
+                            \IF{\(\text{x}_\text{i}\neq\text{y}_\text{i}\)}
+                                \STATE \(\text{M}_\text{i}\leftarrow\text{false}\)
+                            \ENDIF
+                        \ENDFOR
+                    \ENDFOR
+                \ENDIF
+                \RETURN \(\text{M}\)
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
 
     \begin{frame}{The \textsc{MarkRead} algorithm}
         \begin{algorithm}[H]
-	    \caption{\textsc{MarkRead}}
-	    \begin{algorithmic}[1]
+            \caption{\textsc{MarkRead}}
+            \begin{algorithmic}[1]
                 \REQUIRE \(\gamma, \text{D}\)
                 \ENSURE \(\mathcal{M}\)
-		\STATE \, \COMMENT Let \(\text{x}^\text{a}\) be the \(\text{k}\)-mer in \(\gamma\) starting at \(\text{a}\).
+                \STATE \, \COMMENT Let \(\text{x}^\text{a}\) be the \(\text{k}\)-mer in \(\gamma\) starting at \(\text{a}\).
                 \STATE \, \COMMENT Cover \(\gamma\) by \(\text{k}\)-mers \(\{\text{x}^{\text{a}_\text{1}},\dots,\text{x}^{\text{a}_\text{n}}\}\).
-		\FOR{\(\text{i}\in[\text{n}]\)}
-		    \STATE \(\text{M}^\text{i} \leftarrow \text{\textsc{MarkKmer}}(\text{x}^{\text{a}_\text{i}},\text{D})\)
+                \FOR{\(\text{i}\in[\text{n}]\)}
+                    \STATE \(\text{M}^\text{i} \leftarrow \text{\textsc{MarkKmer}}(\text{x}^{\text{a}_\text{i}},\text{D})\)
                     \STATE \(\overline{\text{M}}^\text{i} \leftarrow [\text{false},\dots,\text{false}]\in \{\text{true},\text{false}\}^{\text{length}(\gamma)}\)
-		    \FOR{\(\text{j}\in[\text{k}]\)}
-		        \STATE \(\overline{\text{M}}^{\text{i}}_{\text{j}+\text{a}_\text{i}-1} \leftarrow \text{M}^\text{i}_\text{j}\)
-		    \ENDFOR
+                    \FOR{\(\text{j}\in[\text{k}]\)}
+                        \STATE \(\overline{\text{M}}^{\text{i}}_{\text{j}+\text{a}_\text{i}-1} \leftarrow \text{M}^\text{i}_\text{j}\)
+                    \ENDFOR
                 \ENDFOR
-		\STATE \(\mathcal{M} \leftarrow \overline{\text{M}}^1 \lor \dots \lor \overline{\text{M}}^\text{n}\)
-		\RETURN \(\mathcal{M}\)
-	    \end{algorithmic}
-	\end{algorithm}
+                \STATE \(\mathcal{M} \leftarrow \overline{\text{M}}^1 \lor \dots \lor \overline{\text{M}}^\text{n}\)
+                \RETURN \(\mathcal{M}\)
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
 
     \begin{frame}{The \textsc{SparsifyRQ} algorithm}
         \begin{algorithm}[H]
-	    \caption{\textsc{SparsifyRQ}}
-	    \begin{algorithmic}[1]
+            \caption{\textsc{SparsifyRQ}}
+            \begin{algorithmic}[1]
                 \REQUIRE \(\gamma,\text{Q},\text{D},\text{Q}_{\text{threshold}}\)
-		\ENSURE \(\text{Q}'\)
-		\STATE \(\text{Q}' \leftarrow \text{Q}\)
-		\STATE \(\mathcal{M} \leftarrow \text{\textsc{MarkRead}}(\gamma, \text{D})\)
-		\FOR{\(\text{i}\in [\text{length}(\gamma)]\)}
-		    \IF{\((\text{Q}_\text{i} > \text{Q}_{\text{threshold}}) \text{ \textbf{or} } (\mathcal{M}_\text{i} = \text{\text{true}})\)}
-		        \STATE \(\text{Q}'_\text{i} \leftarrow \text{Q}_{\text{threshold}}\)
-		    \ENDIF
-		\ENDFOR
-		\RETURN \(\text{Q}'\)
-	    \end{algorithmic}
-	\end{algorithm}
+                \ENSURE \(\text{Q}'\)
+                \STATE \(\text{Q}' \leftarrow \text{Q}\)
+                \STATE \(\mathcal{M} \leftarrow \text{\textsc{MarkRead}}(\gamma, \text{D})\)
+                \FOR{\(\text{i}\in [\text{length}(\gamma)]\)}
+                    \IF{\((\text{Q}_\text{i} > \text{Q}_{\text{threshold}}) \text{ \textbf{or} } (\mathcal{M}_\text{i} = \text{\text{true}})\)}
+                        \STATE \(\text{Q}'_\text{i} \leftarrow \text{Q}_{\text{threshold}}\)
+                    \ENDIF
+                \ENDFOR
+                \RETURN \(\text{Q}'\)
+            \end{algorithmic}
+        \end{algorithm}
     \end{frame}
 
     \begin{frame}{Results}
