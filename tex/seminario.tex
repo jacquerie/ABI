@@ -48,7 +48,7 @@
         cost compared to Sanger sequencing, which was used to sequence the
         Human Genome \cite{LLL12}.
 
-        \vspace{0.25cm}
+        \vspace{0.125cm}
 
         \begin{table}
             \centering
@@ -113,7 +113,9 @@
                 Q = -10\log_{10}{P_e}\text{.}
             \]
         \end{definition}
+
         \vspace{0.5cm}
+
         This quantity is encoded in the Sanger FASTQ format as a single byte,
         where the character \texttt{\textquotesingle!\textquotesingle}
         represents the lowest quality while
@@ -121,6 +123,18 @@
     \end{frame}
 
     \begin{frame}{The RQS algorithm in brief}
+        Yu, Yorukoglu and Berger \cite{YYB14} propose the following:
+
+        \vspace{0.25cm}
+
+        \begin{enumerate}
+            \item Generate a dictionary \(\text{D}\) of all \(k\)-mers that appear
+                with high multiplicity in a representative collection of reads.
+            \item Let \(\gamma\) be a read. Its \(k\)-mers close to \(\text{D}\) in
+                Hamming distance have nearly all of their quality score discarded.
+            \item Compress the resulting high redundancy sequence with a general
+                purpose lossless compression algorithm.
+        \end{enumerate}
     \end{frame}
 
     \begin{frame}{The \textsc{Dict} algorithm}
