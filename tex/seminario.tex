@@ -5,11 +5,15 @@
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
+\usepackage{xspace}
 
 \usetheme{Copenhagen}
 \setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
 
-\newcommand{\pp}{\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\raisebox{.4ex}{\tiny\bf +}}
+\newcommand{\pp}{\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\raisebox{.4ex}{\tiny\bf +}\xspace}
 
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
@@ -43,10 +47,10 @@
         \vspace{0.5cm}
         \begin{itemize}
             \item Moore's law predicts that the number of transistors on
-                integrated circuits doubles every \(24\) months.
+                integrated circuits doubles every \(24\) months \cite{Moore1965}.
             \item Kryder's law predicts that hard drive density doubles
-                approximately every \(13\) months.
-            \item Sequencing output has doubled every \(9\) months.
+                approximately every \(13\) months \cite{Kryder2005}.
+            \item Sequencing output has doubled every \(9\) months \cite{Kahn2011}.
         \end{itemize}
     \end{frame}
 
@@ -71,7 +75,7 @@
         \texttt{\textquotesingle\textapprox\textquotesingle} is the highest.
     \end{frame}
 
-    \begin{frame}{The RQS algorithm, in brief}
+    \begin{frame}{The RQS algorithm in brief}
     \end{frame}
 
     \begin{frame}{The \textsc{Dict} algorithm}
@@ -157,6 +161,20 @@
         \end{algorithm}
     \end{frame}
 
+    \begin{frame}{An example}
+    \end{frame}
+
     \begin{frame}{Results}
+    \end{frame}
+
+    \begin{frame}{The implementation of \textsc{DICT}}
+    \end{frame}
+
+    \begin{frame}{An alternative implementation}
+    \end{frame}
+
+    \begin{frame}{Bibliography}
+	\bibliographystyle{amsalpha}
+        \bibliography{seminario.bib}
     \end{frame}
 \end{document}
