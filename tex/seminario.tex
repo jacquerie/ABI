@@ -224,6 +224,28 @@
     \end{frame}
 
     \begin{frame}{Results}
+        Results of compressing HG02215, chromosome 21 with \(\text{r} = 50\),
+        \(\text{k} = 32\) and \(\text{Q}_\text{threshold} = 40\):
+
+        \vspace{0.25cm}
+
+        \begin{table}
+            \centering
+            \begin{tabularx}{\linewidth}{Xccc}
+                \hline
+                Method & Size & Bits/Q & F1 \\
+                \hline
+                Uncompressed & 273 MiB & 8.0000 & 1 \\
+                GZIP & 143 MiB & 4.1923 & 1 \\
+                BZIP2 & 133 MiB & 3.8791 & 1 \\
+                \textbf{7zip (PPMd)} & \textbf{124 MiB} & \textbf{3.6269} & \textbf{1} \\
+                \hline
+                RQS + GZIP & 14 MiB & 0.3825 & 0.9914 \\
+                \textbf{RQS + BZIP2} & \textbf{8.7 MiB} & \textbf{0.2540} & \textbf{0.9914} \\
+                RQS + 7zip (PPMd) & 11 MiB & 0.2953 & 0.9914\\
+                \hline
+            \end{tabularx}
+        \end{table}
     \end{frame}
 
     \begin{frame}{The implementation of \textsc{DICT}}
