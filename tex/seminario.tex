@@ -102,8 +102,23 @@
         \end{figure}
     \end{frame}
 
-    \begin{frame}{The FASTQ format}
-    \end{frame}
+    \begin{frame}[fragile]{An example of the FASTQ format}
+    \begin{verbatim}
+            @EAS54_6_R1_2_1_443_348
+            GTTGCTTCTGGCGTGGGTGGGGGGG
+            +EAS54_6_R1_2_1_443_348
+            ;;;;;;;;;;;9;7;;.7;393333
+    \end{verbatim}
+
+    \vspace{0.125cm}
+
+    \begin{itemize}
+        \item First and third rows contain an identifier for the read.
+        \item Second row is the read itself.
+        \item Fourth element represents the error probability of each base call using
+            Phred quality scores.
+    \end{itemize}
+\end{frame}
 
     \begin{frame}{Phred quality score}
         \begin{definition}[Phred quality score]
@@ -119,7 +134,8 @@
         This quantity is encoded in the Sanger FASTQ format as a single byte,
         where the character \texttt{\textquotesingle!\textquotesingle}
         represents the lowest quality while
-        \texttt{\textquotesingle\textapprox\textquotesingle} is the highest.
+        \texttt{\textquotesingle\textapprox\textquotesingle} is the highest
+        (\(\vert\Sigma\vert = 94\)).
     \end{frame}
 
     \begin{frame}{The RQS algorithm in brief}
@@ -248,10 +264,21 @@
         \end{table}
     \end{frame}
 
-    \begin{frame}{The implementation of \textsc{DICT}}
-    \end{frame}
+    \begin{frame}{The implementation of \textsc{MarkKmer}}
+        The search for \(k\)-mers in the dictionary within Hamming Distance \(1\) from
+        \(D\) is accomplished by Yu et al. with a Boost multi-index hash table with \(4\)
+        keys and a tricky algorithm described in the appendix of their paper.
 
-    \begin{frame}{An alternative implementation}
+        \vspace{0.5cm}
+
+        A variant of the \textsc{SpellModels} algorithm \cite{Sag98} could be used
+        here instead:
+        \begin{itemize}
+            \item The dictionary of \(k\)-mers \(D\) is mantained in memory as its
+                generalized suffix tree.
+            \item Given a \(k\)-mer, we search in \(D\) for the set of \(k\)-mers
+                at Hamming Distance \(1\) from it.
+        \end{itemize}
     \end{frame}
 
     \begin{frame}[allowframebreaks]{Bibliography}
