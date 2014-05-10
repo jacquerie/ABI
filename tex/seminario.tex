@@ -6,6 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{tabularx}
 \usepackage{textcomp}
+\usepackage{tikz}
 \usepackage{xspace}
 
 \usetheme{Copenhagen}
@@ -81,6 +82,24 @@
     \end{frame}
 
     \begin{frame}{How to deal with storage}
+        \begin{figure}
+            \centering
+            \begin{tikzpicture}
+                \draw (0,0) -- (0,5) -- (5,5) -- (5,0) -- cycle;
+                \draw (2.5,0) -- (2.5,5);
+                \draw (0,2.5) -- (5,2.5);
+
+                \node (lossless) at (1.25,5.375) [] {Lossless};
+                \node (lossy) at (3.75,5.375) [] {Lossy};
+                \node (specific) at (-0.625,3.75) [text width=2cm] {General \\ purpose};
+                \node (general) at (-0.625,1.25) [text width=2cm] {Specific \\ for NGS};
+
+                \node (gzip) at (1.25,4.375) [] {\textbf{GZIP}};
+                \node (bzip2) at (1.25,3.75) [] {\textbf{BZIP2}};
+                \node (7zip) at (1.25,3.125) [] {\textbf{7zip}};
+                \node (rqs) at (3.75,1.25) [] {\textbf{RQS}};
+            \end{tikzpicture}
+        \end{figure}
     \end{frame}
 
     \begin{frame}{The FASTQ format}
@@ -199,7 +218,7 @@
     \begin{frame}{An alternative implementation}
     \end{frame}
 
-    \begin{frame}{Bibliography}
+    \begin{frame}[allowframebreaks]{Bibliography}
         \bibliography{seminario.bib}
     \end{frame}
 \end{document}
