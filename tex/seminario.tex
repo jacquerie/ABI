@@ -4,6 +4,7 @@
 \usepackage[noend]{algorithmic}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{tabularx}
 \usepackage{textcomp}
 \usepackage{xspace}
 
@@ -36,22 +37,46 @@
         \titlepage
     \end{frame}
 
-    \begin{frame}{Next-generation sequencing (NGS)}
+    \begin{frame}{Next-generation sequencing (NGS)} 
+        NGS is the name given to several different sequencing technologies that
+        were developed in the past decade.
+
+        \vspace{0.5cm}
+
+        These methods have in common a much higher throughput and a much lower
+        cost compared to Sanger sequencing, which was used to sequence the
+        Human Genome \cite{LLL12}.
+
+        \vspace{0.25cm}
+
+        \begin{table}
+            \centering
+            \begin{tabularx}{\linewidth}{lccc}
+                \hline
+                Sequencers & HiSeq 2000 & SOLiDv4 & Sanger 3730xl \\
+                \hline
+                Output data/run & 600 Gb & 120 Gb & 1.9\textapprox84 Kb \\
+                Cost/million bases & \$0.07 & \$0.13 & \$2400 \\
+                \hline
+            \end{tabularx}
+        \end{table}
     \end{frame}
 
-    \begin{frame}{The problem with next-generation sequencing}
+    \begin{frame}{The problem with NGS}
         \begin{quotation}
             ``In the past two decades, genomic sequencing capabilities have
             increased exponentially, outstripping advances in computing power
             and storage.''
         \end{quotation}
+
         \vspace{0.5cm}
+
         \begin{itemize}
             \item Moore's law predicts that the number of transistors on
-                integrated circuits doubles every \(24\) months \cite{Moore1965}.
+                integrated circuits doubles every \(24\) months \cite{Moo65}.
             \item Kryder's law predicts that hard drive density doubles
-                approximately every \(13\) months \cite{Kryder2005}.
-            \item Sequencing output has doubled every \(9\) months \cite{Kahn2011}.
+                approximately every \(13\) months \cite{Wal05}.
+            \item Sequencing output has doubled every \(9\) months \cite{Kah11}.
         \end{itemize}
     \end{frame}
 
