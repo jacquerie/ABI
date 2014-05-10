@@ -13,13 +13,14 @@
 \setbeamertemplate{bibliography entry location}{}
 \setbeamertemplate{bibliography entry note}{}
 
-\newcommand{\pp}{\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\raisebox{.4ex}{\tiny\bf +}\xspace}
+\bibliographystyle{amsalpha}
 
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 \renewcommand{\algorithmiccomment}[1]{/\(\!\)/ #1}
 
 \newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
+\newcommand{\pp}{\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\raisebox{.4ex}{\tiny\bf +}\xspace}
 
 \title[Traversing the \(k\)-mer Landscape of NGS Read Datasets]{
     Traversing the \(k\)-mer Landscape of NGS Read Datasets for Quality Score Sparsification
@@ -174,7 +175,6 @@
     \end{frame}
 
     \begin{frame}{Bibliography}
-	\bibliographystyle{amsalpha}
         \bibliography{seminario.bib}
     \end{frame}
 \end{document}
